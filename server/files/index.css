@@ -30,48 +30,172 @@ ul {
 }
 
 /* Task 2.1. Lay out the childs of the 'body' using Grid Template Areas. */
+body {
+  display: grid;
+  grid-template-areas:
+    "h h"
+    "n m"
+    "f f";
+  grid-template-columns: 150px 1fr; /* Nav: 200px, Main: Rest */
+  grid-template-rows: 60px 1fr 80px; /* Header/Footer: 80px, Main: Rest */
+}
 
+/* Responsive: Stack Layout für kleine Bildschirme */
+@media (max-width: 600px) {
+  body {
+    grid-template-areas:
+      "h"
+      "n"
+      "m"
+      "f";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+  }
+}
+
+header { grid-area: h; }
+nav { grid-area: n; }
+main {
+  grid-area: m;
+  overflow-y: auto; /* Task 2.1.3: Main scrollbar falls Inhalt zu groß */
+}
+footer { grid-area: f; }
 
 /* Task 3.1. Make the header element a flex container and center its children
    vertically and horizontally.
  */
 
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-/* Task 3.2. Make the list items of the unordered list in the nav element a flex container, 
+/* Task 3.2. Make the list items of the unordered list in the nav element a flex container,
    use column direction and center the child items
  */
+nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 
 /* Task 3.3. Make the main element a Flexbox container */
-
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
 
 /* Task 3.4. Make the footer's ul a Flexbox container */
-
+footer ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
 /* From here on styling from exercise 1 */
-img {
-  border-radius: 12px;
+img{
+  border-radius: 13px;
+  max-width: 100%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-article {
-  background-color: lightgray;
-  border-radius: 16px;
-  padding: 16px;
-  width: 384px;
-  margin: 8px;
+h1{
+  font-weight: bolder;
+  margin: 20px 0;
+
 }
 
-a {
-  color: beige;
+article{
+  background-color: cornflowerblue;
+  border-radius: 13px;
+  margin: 15px;
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+
+  max-width: 1000px;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
-span {
-  margin-right: 4px;
+article:hover {
+  transform: translateY(-5px);
+  border-color: #e94560;
 }
 
-.genre {
-  padding: 4px 8px;
-  border: solid black 1px;
+.genre{
+  display: inline-block;
+  margin-right: 13px;
+  background-color: darkcyan;
+  padding: 4px 13px;
+  border-radius: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+
+.genre:hover {
+  background-color: #e94560;
+  cursor: pointer;
+}
+
+.meta {
+  display: inline-block;
+}
+
+
+
+article:nth-of-type(2) {
+  background-color: #27ae60;
+}
+
+
+article:nth-of-type(3) {
+  background-color: #e94560;
+}
+
+article h1 {
+  margin-bottom: 10px;
+}
+
+/*#2c3e50*/
+
+.edit-button {
+  background-color: darkslategrey;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 20px;
   border-radius: 6px;
-  background-color: darkgray;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 10px 0 20px 0;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.edit-button:hover {
+  background-color: #e94560; /* Akzentfarbe beim Drüberfahren */
+  border-color: #e94560;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.edit-button:active {
+  transform: translateY(0);
+}
+
+header h1 {
+  font-size: 1.5rem; /* Etwas kleiner für mehr Platz */
+  margin: 0;        /* Entfernt den Standard-Abstand */
 }
